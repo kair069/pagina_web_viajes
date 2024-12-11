@@ -63,7 +63,9 @@ Una aplicación web desarrollada con **Django** y **MySQL** que permite gestiona
 
 ## 🎨 Capturas de pantalla
 
-(Agrega aquí algunas capturas de pantalla de tu aplicación para mostrar las funcionalidades clave).
+![Gif 1](https://github.com/kair069/pagina_web_viajes/blob/main/aa.gif)
+
+![Gif 2](https://github.com/kair069/pagina_web_viajes/blob/main/aa2.gif)
 
 ## ✨ Funcionalidades futuras
 
