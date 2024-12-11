@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Viajes</title>
+    <!-- Materialize CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+    <!-- Animate.css -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-image: url('https://cdn.pixabay.com/photo/2016/02/10/21/59/landscape-1192669_640.jpg'); /* Cambia por la URL de tu imagen de fondo */
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            color: white;
+            overflow-x: hidden;
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.85);
+            color: #333;
+        }
+        .btn {
+            background-color: #5c6bc0; /* Azul suave */
+        }
+        .btn:hover {
+            background-color: #3949ab; /* Azul oscuro */
+        }
+        .card:hover {
+            transform: scale(1.05); /* Efecto hover para agrandar ligeramente las tarjetas */
+            transition: transform 0.3s ease;
+        }
+        .paginate-center {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    {% include 'menu/sidebar.html' %}
+    <div class="container">
+        <!-- Título con fondo, animación y efectos dinámicos -->
+        <h1 class="center-align animate__animated animate__fadeInDown" style="background: linear-gradient(to right, #3949ab, #5c6bc0); color: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
+            Lista de Viajes
+        </h1>
+        <div class="row">
+            <div class="col s12 center-align">
+                <!-- Botón con animación de zoom -->
+                <a href="{% url 'viajes_create' %}" class="btn waves-effect waves-light animate__animated animate__zoomIn" style="background-color: #5c6bc0; color: white;">
+                    Crear nuevo viaje
+                </a>
+            </div>
+        </div>
+        
+        <div class="row">
+            {% for viaje in viajes %}
+            <div class="col s12 m6 l4">
+                <div class="card animate__animated animate__fadeInUp animate__delay-{{ forloop.counter0|divisibleby:3|yesno:"0.5s,1.0s" }}">
+                    <div class="card-image">
+                        {% if viaje.imagen %}
+                        <img src="{{ viaje.imagen }}" alt="Imagen de {{ viaje.destino }}">
+                        {% else %}
+                        <img src="https://via.placeholder.com/400x200?text=Sin+imagen" alt="Sin imagen">
+                        {% endif %}
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title">{{ viaje.destino }}</span>
+                        <p>
+                            <strong>Salida:</strong> {{ viaje.fecha_salida }}<br>
+                            <strong>Regreso:</strong> {{ viaje.fecha_regreso }}<br>
+                            <strong>Precio:</strong> ${{ viaje.precio }}<br>
+                            <strong>Descripción:</strong> {{ viaje.descripcion|default:"No disponible" }}
+                        </p>
+                    </div>
+                    <div class="card-action">
+                        <a href="{% url 'viajes_update' viaje.pk %}" class="blue-text">Editar</a>
+                        <a href="{% url 'viajes_delete' viaje.pk %}" class="red-text">Eliminar</a>
+                        <br>
+                        <!-- Botón de reserva -->
+                        <a href="{% url 'crear_reserva' viaje.pk %}" class="btn waves-effect waves-light" style="background-color: #4caf50;">
+                            Reservar
+                        </a>
+                        <!-- Botón de pago -->
+                        <a href="{% url 'pagar_reserva' viaje.pk %}" class="btn waves-effect waves-light" style="background-color: #ff5722;">
+                            Pagar
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Paginación -->
+        <div class="paginate-center">
+            {% if is_paginated %}
+                <ul class="pagination">
+                    {% if page_obj.has_previous %}
+                    <li class="waves-effect">
+                        <a href="?page={{ page_obj.previous_page_number }}">
+                            <i class="material-icons">chevron_left</i>
+                        </a>
+                    </li>
+                    {% else %}
+                    <li class="disabled">
+                        <a href="#">
+                            <i class="material-icons">chevron_left</i>
+                        </a>
+                    </li>
+                    {% endif %}
+
+                    {% for num in page_obj.paginator.page_range %}
+                    <li class="{% if page_obj.number == num %}active{% else %}waves-effect{% endif %}">
+                        <a href="?page={{ num }}">{{ num }}</a>
+                    </li>
+                    {% endfor %}
+
+                    {% if page_obj.has_next %}
+                    <li class="waves-effect">
+                        <a href="?page={{ page_obj.next_page_number }}">
+                            <i class="material-icons">chevron_right</i>
+                        </a>
+                    </li>
+                    {% else %}
+                    <li class="disabled">
+                        <a href="#">
+                            <i class="material-icons">chevron_right</i>
+                        </a>
+                    </li>
+                    {% endif %}
+                </ul>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Materialize JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <!-- JavaScript para interacciones -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            M.AutoInit();
+        });
+    </script>
+</body>
+</html>

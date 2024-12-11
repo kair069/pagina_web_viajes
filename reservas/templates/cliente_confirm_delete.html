@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eliminar Cliente</title>
+    <!-- Importar Materialize CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-image: url('https://images.vexels.com/content/126376/preview/flat-travel-plane-backdrop-836104.png'); /* Cambia esta URL por una imagen de fondo */
+            background-size: cover;
+            background-position: center;
+            color: #ffffff;
+            font-family: 'Roboto', sans-serif;
+            overflow-x: hidden;
+        }
+        .container {
+            margin-top: 80px;
+            animation: fadeIn 1s ease-in-out;
+        }
+        h1 {
+            text-align: center;
+            color: #ef5350; /* Rojo suave */
+            font-weight: bold;
+            animation: slideInDown 0.8s ease-in-out;
+        }
+        .card {
+            background-color: rgba(255, 255, 255, 0.9);
+            color: #333;
+            border-radius: 12px;
+            padding: 20px;
+            animation: zoomIn 0.6s ease-in-out;
+        }
+        .btn-confirm {
+            background-color: #ef5350; /* Botón de confirmación en rojo */
+            color: #ffffff;
+            font-weight: bold;
+        }
+        .btn-confirm:hover {
+            background-color: #d32f2f;
+        }
+        .btn-cancel {
+            color: #546e7a; /* Gris oscuro */
+            font-weight: bold;
+        }
+        .btn-cancel:hover {
+            color: #90a4ae;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        @keyframes slideInDown {
+            from {
+                transform: translateY(-30px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.9);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Título -->
+        <h1>Eliminar Cliente</h1>
+        <!-- Tarjeta de confirmación -->
+        <div class="row">
+            <div class="col s12 m8 offset-m2 l6 offset-l3">
+                <div class="card">
+                    <p class="center-align">
+                        ¿Estás seguro de que deseas eliminar a <strong>{{ cliente.nombre }}</strong>?
+                    </p>
+                    <form method="post" class="center-align">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-confirm waves-effect waves-light">Sí, eliminar</button>
+                    </form>
+                    <div class="center-align" style="margin-top: 20px;">
+                        <a href="{% url 'cliente_list' %}" class="btn btn-flat btn-cancel waves-effect">Cancelar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Importar Materialize JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+</html>

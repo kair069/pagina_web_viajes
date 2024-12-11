@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explorar Destinos - Conociendo el Perú</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <header class="header-explorar">
+        <div class="overlay">
+            <h1>Explorar Destinos</h1>
+            <p>Descubre los mejores destinos turísticos de Perú según tu presupuesto y preferencias.</p>
+        </div>
+    </header>
+    <main>
+        <!-- Filtros -->
+        <section class="filtros">
+            <h2>Filtrar por Preferencias</h2>
+            <form id="filtros-form">
+                <div class="filtro-grupo">
+                    <label for="precio">Precio:</label>
+                    <select id="precio" name="precio">
+                        <option value="todos">Todos</option>
+                        <option value="economico">Económico</option>
+                        <option value="medio">Medio</option>
+                        <option value="lujo">Lujo</option>
+                    </select>
+                </div>
+                <button type="button" id="aplicar-filtros" class="btn">Aplicar Filtros</button>
+            </form>
+        </section>
+
+        <!-- Galería de Destinos -->
+        <section class="galeria">
+            <h2>Destinos Populares</h2>
+            <div class="destinos-grid" id="destinos-container">
+                <!-- Destinos -->
+                <div class="destino" data-precio="economico">
+                    <div class="imagen-con-overlay">
+                        <img src="../img/machu-picchu.jpg" alt="Machu Picchu">
+                        <div class="overlay-descripcion">
+                            <p>Una de las maravillas del mundo, Machu Picchu es el legado más impresionante del Imperio Inca. Descubre su historia y vive la magia de sus paisajes únicos.</p>
+                        </div>
+                    </div>
+                    <h3>Machu Picchu</h3>
+                    <p>Precio: $200 (Económico)</p>
+                    <a href="detalles.html?destino=machu-picchu" class="btn">Ver más</a>
+                </div>
+                <div class="destino" data-precio="medio">
+                    <div class="imagen-con-overlay">
+                        <img src="../img/titicaca.jpg" alt="Lago Titicaca">
+                        <div class="overlay-descripcion">
+                            <p>El lago navegable más alto del mundo, hogar de las islas flotantes de los Uros. Vive una experiencia cultural y natural sin igual en este destino único.</p>
+                        </div>
+                    </div>
+                    <h3>Lago Titicaca</h3>
+                    <p>Precio: $400 (Medio)</p>
+                    <a href="detalles.html?destino=titicaca" class="btn">Ver más</a>
+                </div>
+                <div class="destino" data-precio="lujo">
+                    <div class="imagen-con-overlay">
+                        <img src="../img/arequipa.jpg" alt="Arequipa">
+                        <div class="overlay-descripcion">
+                            <p>La Ciudad Blanca, famosa por su arquitectura colonial y paisajes volcánicos únicos.</p>
+                        </div>
+                    </div>
+                    <h3>Arequipa</h3>
+                    <p>Precio: $700 (Lujo)</p>
+                    <a href="detalles.html?destino=arequipa" class="btn">Ver más</a>
+                </div>
+                <div class="destino" data-precio="economico">
+                    <div class="imagen-con-overlay">
+                        <img src="../img/ica.jpg" alt="Ica y Huacachina">
+                        <div class="overlay-descripcion">
+                            <p>Visita el oasis de Huacachina y experimenta la emoción de los deportes de aventura en las dunas del desierto peruano.</p>
+                        </div>
+                    </div>
+                    <h3>Ica y Huacachina</h3>
+                    <p>Precio: $150 (Económico)</p>
+                    <a href="detalles.html?destino=ica" class="btn">Ver más</a>
+                </div>
+                <div class="destino" data-precio="medio">
+                    <div class="imagen-con-overlay">
+                        <img src="../img/cusco.jpg" alt="Cusco">
+                        <div class="overlay-descripcion">
+                            <p>La capital histórica del Imperio Inca. Una ciudad vibrante llena de historia y cultura.</p>
+                        </div>
+                    </div>
+                    <h3>Cusco</h3>
+                    <p>Precio: $450 (Medio)</p>
+                    <a href="detalles.html?destino=cusco" class="btn">Ver más</a>
+                </div>
+                <div class="destino" data-precio="lujo">
+                    <div class="imagen-con-overlay">
+                        <img src="../img/paracas.jpg" alt="Paracas">
+                        <div class="overlay-descripcion">
+                            <p>Destino costero famoso por sus playas y como punto de partida para explorar las Islas Ballestas.</p>
+                        </div>
+                    </div>
+                    <h3>Paracas</h3>
+                    <p>Precio: $800 (Lujo)</p>
+                    <a href="detalles.html?destino=paracas" class="btn">Ver más</a>
+                </div>
+                <div class="destino" data-precio="economico">
+                    <div class="imagen-con-overlay">
+                        <img src="../img/colca.jpg" alt="Cañón del Colca">
+                        <div class="overlay-descripcion">
+                            <p>Uno de los cañones más profundos del mundo, perfecto para los amantes del senderismo y la naturaleza.</p>
+                        </div>
+                    </div>
+                    <h3>Cañón del Colca</h3>
+                    <p>Precio: $120 (Económico)</p>
+                    <a href="detalles.html?destino=colca" class="btn">Ver más</a>
+                </div>
+                <div class="destino" data-precio="medio">
+                    <div class="imagen-con-overlay">
+                        <img src="../img/ballestas.jpg" alt="Islas Ballestas">
+                        <div class="overlay-descripcion">
+                            <p>Un paraíso para los amantes de la fauna marina. Observa lobos marinos, pingüinos y aves en su hábitat natural.</p>
+                        </div>
+                    </div>
+                    <h3>Islas Ballestas</h3>
+                    <p>Precio: $300 (Medio)</p>
+                    <a href="detalles.html?destino=ballestas" class="btn">Ver más</a>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>© 2024 Conociendo el Perú. Todos los derechos reservados.</p>
+    </footer>
+    <script src="../js/scripts.js"></script>
+</body>
+</html>

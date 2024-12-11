@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Clientes</title>
+    <!-- Importar Materialize CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-image: url('https://static.vecteezy.com/system/resources/thumbnails/008/024/321/small_2x/silhouette-of-palm-trees-beautiful-sunset-on-the-tropical-sea-beach-background-for-travel-in-holiday-relax-time-photo.jpg'); /* Cambia esta URL por la imagen de fondo deseada */
+            background-size: cover;
+            background-position: center;
+            color: #ffffff;
+            font-family: 'Roboto', sans-serif;
+            overflow-x: hidden;
+        }
+        .container {
+            margin-top: 50px;
+            animation: fadeIn 1s ease-in-out;
+        }
+        h1 {
+            text-align: center;
+            color: #80cbc4; /* Verde suave */
+            font-weight: bold;
+            animation: slideInDown 1s ease-in-out;
+        }
+        .card {
+            background-color: rgba(255, 255, 255, 0.9);
+            color: #333;
+            border-radius: 12px;
+            animation: zoomIn 0.6s ease-in-out;
+        }
+        .card-action a {
+            color: #4db6ac;
+            font-weight: bold;
+        }
+        .card-action a:hover {
+            color: #00796b;
+        }
+        .add-client {
+            display: block;
+            margin: 20px auto;
+            text-align: center;
+        }
+        .btn-custom {
+            background-color: #80cbc4;
+            color: #ffffff;
+            font-weight: bold;
+        }
+        .btn-custom:hover {
+            background-color: #4db6ac;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        @keyframes slideInDown {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.9);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Título -->
+        <h1>Lista de Clientes</h1>
+        <!-- Botón para agregar cliente -->
+        <div class="add-client">
+            <a href="{% url 'cliente_create' %}" class="btn btn-custom waves-effect waves-light">Agregar Cliente</a>
+        </div>
+        <!-- Lista de clientes como tarjetas -->
+        <div class="row">
+            {% for cliente in clientes %}
+            <div class="col s12 m6 l4">
+                <div class="card">
+                    <div class="card-content">
+                        <span class="card-title">{{ cliente.nombre }}</span>
+                        <p><strong>Correo:</strong> {{ cliente.correo_electronico }}</p>
+                        <p><strong>Teléfono:</strong> {{ cliente.telefono }}</p>
+                    </div>
+                    <div class="card-action">
+                        <a href="{% url 'cliente_update' cliente.id %}">Editar</a>
+                        <a href="{% url 'cliente_delete' cliente.id %}" class="red-text">Eliminar</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <!-- Importar Materialize JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Cliente</title>
+    <!-- Importar Materialize CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-image: url('https://static.vecteezy.com/system/resources/previews/014/001/041/non_2x/beautiful-panoramic-sunset-tropical-paradise-beach-tranquil-summer-vacation-or-holiday-landscape-tropical-sunset-beach-seaside-palm-calm-sea-panorama-exotic-nature-view-inspirational-seascape-scenic-photo.jpg'); /* Cambia esta URL por la imagen de fondo deseada */
+            background-size: cover;
+            background-position: center;
+            font-family: 'Roboto', sans-serif;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+        .container {
+            margin-top: 50px;
+            animation: fadeIn 1s ease-in-out;
+        }
+        h1 {
+            text-align: center;
+            color: #80cbc4; /* Verde suave */
+            font-weight: bold;
+            animation: slideInDown 1s ease-in-out;
+        }
+        .card {
+            background-color: rgba(255, 255, 255, 0.9);
+            color: #333;
+            border-radius: 12px;
+            padding: 20px;
+            animation: zoomIn 0.6s ease-in-out;
+        }
+        .btn-custom {
+            background-color: #80cbc4;
+            color: #ffffff;
+            font-weight: bold;
+        }
+        .btn-custom:hover {
+            background-color: #4db6ac;
+        }
+        a {
+            color: #ffffff;
+            font-weight: bold;
+        }
+        a:hover {
+            color: #aed581;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        @keyframes slideInDown {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.9);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Título -->
+        <h1>{% if form.instance.pk %}Editar Cliente{% else %}Crear Cliente{% endif %}</h1>
+        <!-- Tarjeta con formulario -->
+        <div class="row">
+            <div class="col s12 m8 offset-m2 l6 offset-l3">
+                <div class="card">
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="input-field">
+                            <!-- Renderizar el formulario en formato de párrafos -->
+                            {{ form.as_p }}
+                        </div>
+                        <div class="card-action center-align">
+                            <button type="submit" class="btn btn-custom waves-effect waves-light">Guardar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- Enlace para regresar -->
+        <div class="center-align">
+            <a href="{% url 'cliente_list' %}" class="btn btn-flat white-text">Regresar a la lista</a>
+        </div>
+    </div>
+    <!-- Importar Materialize JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+</html>

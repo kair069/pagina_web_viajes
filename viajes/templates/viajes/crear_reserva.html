@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Reserva para {{ viaje.destino }}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+
+    <div class="container mt-5">
+        <h2>Crear Reserva para el Viaje: {{ viaje.destino }}</h2>
+
+        <!-- Mostrar mensajes de éxito o error si los hay -->
+        {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                    <p class="alert alert-{{ message.tags }}">{{ message }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <!-- Formulario de reserva -->
+        <form method="post">
+            {% csrf_token %}
+
+            <!-- Campo del formulario para seleccionar el viaje (ya está asignado automáticamente) -->
+            <div class="form-group">
+                <label for="{{ form.viaje.id_for_label }}">Viaje</label>
+                {{ form.viaje }}
+            </div>
+
+            <!-- Campo para el número de personas -->
+            <div class="form-group">
+                <label for="{{ form.numero_personas.id_for_label }}">Número de Personas</label>
+                {{ form.numero_personas }}
+            </div>
+
+            <!-- Campo para la fecha de la reserva -->
+            <div class="form-group">
+                <label for="{{ form.fecha_reserva.id_for_label }}">Fecha de Reserva</label>
+                {{ form.fecha_reserva }}
+            </div>
+
+            <!-- Botón para enviar el formulario -->
+            <button type="submit" class="btn btn-primary">Crear Reserva</button>
+        </form>
+
+        <br>
+        <a href="{% url 'viajes_list' %}">Volver a la lista de viajes</a>
+    </div>
+
+</body>
+</html>

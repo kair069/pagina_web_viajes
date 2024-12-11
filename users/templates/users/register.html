@@ -1,0 +1,95 @@
+<!-- templates/users/register.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+</head>
+<body>
+
+    <div class="container">
+        <h2 class="center-align">Registro de Usuario</h2>
+
+        <form method="POST">
+            {% csrf_token %}
+            <div class="input-field">
+                <label for="id_username">Nombre de usuario</label>
+                {{ form.username }}
+                {% if form.username.errors %}
+                    <div class="error red-text">
+                        {% for error in form.username.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+            <div class="input-field">
+                <label for="id_email">Correo electrónico</label>
+                {{ form.email }}
+                {% if form.email.errors %}
+                    <div class="error red-text">
+                        {% for error in form.email.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+            <div class="input-field">
+                <label for="id_first_name">Nombre</label>
+                {{ form.first_name }}
+                {% if form.first_name.errors %}
+                    <div class="error red-text">
+                        {% for error in form.first_name.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+            <div class="input-field">
+                <label for="id_last_name">Apellido</label>
+                {{ form.last_name }}
+                {% if form.last_name.errors %}
+                    <div class="error red-text">
+                        {% for error in form.last_name.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+            <div class="input-field">
+                <label for="id_password">Contraseña</label>
+                {{ form.password }}
+                {% if form.password.errors %}
+                    <div class="error red-text">
+                        {% for error in form.password.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+            <div class="input-field">
+                <label for="id_password2">Confirmar Contraseña</label>
+                {{ form.password2 }}
+                {% if form.password2.errors %}
+                    <div class="error red-text">
+                        {% for error in form.password2.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+
+            <button class="btn waves-effect waves-light" type="submit">Registrarse</button>
+        </form>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+        M.AutoInit();
+    </script>
+
+</body>
+</html>

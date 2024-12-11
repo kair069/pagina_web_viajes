@@ -1,0 +1,156 @@
+<!-- templates/registration/login.html -->
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión</title>
+
+    <!-- Incluir Materialize CSS desde CDN -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+
+    <!-- Estilos adicionales -->
+    <style>
+        /* Fondo de la página */
+        body {
+            background-image: url('https://wallpapers.com/images/hd/travel-hd-axhrsecphqby11wk.jpg'); /* Imagen de fondo dinámica */
+            background-size: cover;
+            background-position: center;
+            font-family: 'Roboto', sans-serif;
+            color: white;
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 2s ease;
+        }
+
+        /* Animación de entrada del formulario (pop) */
+        .login-container {
+            background: rgba(255, 255, 255, 0.8); /* Fondo más suave */
+            padding: 30px;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            transform: scale(0.8);
+            animation: popUp 1s forwards;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes popUp {
+            0% {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            font-size: 2rem;
+            color: #333; /* Color más suave para el título */
+        }
+
+        /* Estilo de los botones */
+        .btn {
+            background-color: #64B5F6; /* Color suave (azul pastel) */
+            width: 100%;
+            transition: background-color 0.3s ease;
+            border-radius: 5px;
+        }
+
+        .btn:hover {
+            background-color: #42A5F5; /* Efecto en el hover con un tono más claro */
+        }
+
+        /* Estilo de los campos de texto */
+        .input-field input[type="text"],
+        .input-field input[type="password"] {
+            color: #333;
+            background: rgba(255, 255, 255, 0.8);
+            border: none;
+            border-radius: 5px;
+        }
+
+        .input-field input[type="text"]:focus,
+        .input-field input[type="password"]:focus {
+            border-bottom: 1px solid #64B5F6;
+            box-shadow: 0 1px 0 0 #64B5F6;
+        }
+
+        label {
+            color: #333;
+        }
+
+        /* Mensajes de error */
+        .error ul {
+            padding: 0;
+            list-style-type: none;
+            color: red;
+        }
+
+        .error li {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="login-container">
+        <h2>Iniciar Sesión</h2>
+        <form method="post" class="col s12">
+            {% csrf_token %}
+            
+            <div class="input-field">
+                {{ form.username }}
+                <label for="id_username">Nombre de usuario</label>
+            </div>
+            <div class="input-field">
+                {{ form.password }}
+                <label for="id_password">Contraseña</label>
+            </div>
+            
+            <button type="submit" class="btn waves-effect waves-light">Entrar</button>
+        </form>
+
+        {% if form.errors %}
+        <div class="error">
+            <ul>
+                {% for error in form.errors.values %}
+                <li>{{ error }}</li>  <!-- Muestra los errores del formulario -->
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- Incluir Materialize JS desde CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <!-- Script de animación -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Añadir animación pop al cargar
+            const formContainer = document.querySelector('.login-container');
+            formContainer.classList.add('animated', 'fadeIn');
+        });
+    </script>
+</body>
+
+</html>

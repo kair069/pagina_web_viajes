@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% if object %}Editar Viaje{% else %}Crear Nuevo Viaje{% endif %}</title>
+    <!-- Materialize CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+    <!-- Animate.css -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-image: url('https://via.placeholder.com/1920x1080'); /* Cambia por la URL de tu imagen de fondo */
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            color: white;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 50px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        h1 {
+            color: #3949ab;
+        }
+        .btn {
+            background-color: #5c6bc0; /* Azul suave */
+        }
+        .btn:hover {
+            background-color: #3949ab; /* Azul oscuro */
+        }
+        form {
+            animation: fadeIn 0.8s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .btn-flat {
+            color: #3949ab;
+            font-weight: bold;
+        }
+        .btn-flat:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container animate__animated animate__fadeInDown">
+        <h1 class="center-align">
+            {% if object %}Editar Viaje{% else %}Crear Nuevo Viaje{% endif %}
+        </h1>
+
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col s12">
+                    <!-- Renderiza el formulario con Materialize -->
+                    {{ form.as_p }}
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col s12 center-align">
+                    <button type="submit" class="btn waves-effect waves-light">Guardar</button>
+                </div>
+            </div>
+        </form>
+
+        <div class="row">
+            <div class="col s12 center-align">
+                <a href="{% url 'viajes_list' %}" class="btn-flat waves-effect">Volver a la lista</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Materialize JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            M.AutoInit();
+        });
+    </script>
+</body>
+</html>

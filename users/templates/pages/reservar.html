@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservar Viaje - Conociendo el Perú</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <header class="header-reservar">
+        <div class="overlay">
+            <h1>Reservar Tu Viaje</h1>
+            <p>Completa los detalles y prepárate para una experiencia inolvidable.</p>
+        </div>
+    </header>
+    <main>
+        <!-- Sección de formulario -->
+        <section class="formulario-reserva">
+            <h2>Formulario de Reserva</h2>
+            <p>Por favor, completa los siguientes campos para reservar tu aventura en Perú.</p>
+            <form action="#" method="post">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="nombre">Nombre:</label>
+                        <input type="text" id="nombre" name="nombre" placeholder="Ingresa tu nombre completo" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="correo">Correo Electrónico:</label>
+                        <input type="email" id="correo" name="correo" placeholder="example@correo.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="telefono">Teléfono:</label>
+                        <input type="tel" id="telefono" name="telefono" placeholder="+51 999 999 999" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="fecha">Fecha del Viaje:</label>
+                        <input type="date" id="fecha" name="fecha" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="personas">Número de Personas:</label>
+                        <input type="number" id="personas" name="personas" placeholder="1" min="1" required>
+                    </div>
+                </div>
+                <button type="submit" class="btn">Confirmar Reserva</button>
+            </form>
+        </section>
+
+        <!-- Beneficios -->
+        <section class="beneficios">
+            <h2>¿Por qué reservar con nosotros?</h2>
+            <div class="beneficios-grid">
+                <div class="beneficio">
+                    <img src="../img/beneficio-seguridad.jpg" alt="Seguridad">
+                    <h3>Seguridad Garantizada</h3>
+                    <p>Viaja con confianza sabiendo que cuidamos de cada detalle.</p>
+                </div>
+                <div class="beneficio">
+                    <img src="../img/beneficio-precios.jpg" alt="Precios Competitivos">
+                    <h3>Precios Competitivos</h3>
+                    <p>Ofrecemos las mejores tarifas sin comprometer la calidad.</p>
+                </div>
+                <div class="beneficio">
+                    <img src="../img/beneficio-experiencia.jpg" alt="Experiencia Única">
+                    <h3>Experiencia Única</h3>
+                    <p>Creamos recuerdos inolvidables en los mejores destinos del Perú.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>© 2024 Conociendo el Perú. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>

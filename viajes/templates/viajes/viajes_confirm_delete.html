@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmar Eliminación</title>
+    <!-- Materialize CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+    <!-- Animate.css -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-image: url('https://via.placeholder.com/1920x1080'); /* Cambia por la URL de tu imagen de fondo */
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            color: white;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 50px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 0.8s ease-in-out;
+        }
+        h1 {
+            color: #d32f2f; /* Rojo oscuro para resaltar la advertencia */
+            text-align: center;
+        }
+        .btn-danger {
+            background-color: #d32f2f;
+        }
+        .btn-danger:hover {
+            background-color: #b71c1c;
+        }
+        .btn-flat {
+            color: #3949ab;
+            font-weight: bold;
+        }
+        .btn-flat:hover {
+            text-decoration: underline;
+        }
+        p {
+            color: #333;
+            font-size: 18px;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container animate__animated animate__fadeInDown">
+        <h1>¿Estás seguro de que deseas eliminar este viaje?</h1>
+        <p><strong>Destino:</strong> {{ object.destino }}</p>
+        <p><strong>Fecha de Salida:</strong> {{ object.fecha_salida }}</p>
+        <p><strong>Fecha de Regreso:</strong> {{ object.fecha_regreso }}</p>
+
+        <form method="post">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col s12 center-align">
+                    <button type="submit" class="btn btn-danger waves-effect waves-light">Eliminar</button>
+                    <a href="{% url 'viajes_list' %}" class="btn-flat waves-effect">Cancelar</a>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- Materialize JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+</html>

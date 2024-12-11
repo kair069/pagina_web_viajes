@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menú Lateral Mejorado</title>
+    <!-- Materialize CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+    <!-- Google Icons para los iconos -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <!-- Estilos personalizados -->
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            min-height: 100vh;
+            flex-direction: column;
+            margin: 0;
+            background: url('https://static.vecteezy.com/system/resources/previews/030/465/530/large_2x/mini-airplane-glasses-and-alarm-clock-on-world-map-flat-lay-vertical-mobile-wallpaper-ai-generated-free-photo.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #2c3e50;
+        }
+
+        main {
+            flex: 1 0 auto;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .sidenav {
+            background-image: url('https://img.freepik.com/vector-gratis/ilustracion-vectorial-paisaje-montana_1441-77.jpg'); /* Fondo del menú */
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 300px;
+            height: 100%;
+            transform: translateX(-300px); /* Menú oculto inicialmente */
+            opacity: 0;
+            color: white; /* Color de texto blanco sobre fondo */
+        }
+
+        .sidenav-visible {
+            transform: translateX(0);
+            opacity: 1;
+            animation: jumpIn 0.4s ease-in-out;
+        }
+
+        /* Animación de salto */
+        @keyframes jumpIn {
+            0% {
+                transform: translateX(-50px);
+            }
+            30% {
+                transform: translateX(10px);
+            }
+            50% {
+                transform: translateX(-10px);
+            }
+            70% {
+                transform: translateX(5px);
+            }
+            100% {
+                transform: translateX(0);
+            }
+        }
+
+        .sidenav a {
+            color: #ecf0f1; /* Texto blanco */
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .sidenav a:hover {
+            background-color: #1abc9c; /* Color de fondo al hacer hover */
+            color: #fff; /* Texto blanco al hacer hover */
+            padding-left: 20px;
+        }
+
+        .sidenav a i {
+            margin-right: 15px;
+            color: #ecf0f1; /* Iconos blancos */
+            transition: color 0.3s ease;
+        }
+
+        .sidenav a:hover i {
+            color: #fff; /* Iconos blancos al hacer hover */
+        }
+
+        .container {
+            margin-top: 30px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Animación de fadeIn */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Estilos para el botón de menú en pantallas pequeñas */
+        @media (max-width: 768px) {
+            .sidenav {
+                width: 250px;
+            }
+
+            .sidenav a {
+                font-size: 18px;
+            }
+
+            #menu-btn {
+                display: block; /* Muestra el botón en pantallas pequeñas */
+            }
+        }
+
+        /* Estilo para el botón de menú */
+        #menu-btn {
+            display: none;
+            background-color: transparent;
+            border: none;
+            color: white;
+            font-size: 30px;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 9999;
+        }
+    </style>
+</head>
+<body>
+    <!-- Botón para abrir el menú -->
+    <button id="menu-btn">
+        <i class="material-icons">menu</i>
+    </button>
+
+    <!-- Menú lateral -->
+    <ul id="slide-out" class="sidenav">
+        <li><a href="{% url 'viajes_list' %}"><i class="material-icons">flight_takeoff</i> Lista de Viajes</a></li>
+        <li><a href="{% url 'cliente_list' %}"><i class="material-icons">person</i> Lista de Clientes</a></li>
+    </ul>
+
+    <!-- Materialize JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const sidenav = document.querySelector('.sidenav');
+            const menuBtn = document.getElementById('menu-btn');
+
+            // Mostrar el menú cuando el botón de menú es presionado
+            menuBtn.addEventListener('click', () => {
+                sidenav.classList.toggle('sidenav-visible');
+            });
+
+            // Mostrar el menú cuando el mouse pasa por el lado izquierdo de la pantalla
+            document.body.addEventListener('mousemove', (e) => {
+                if (e.clientX <= 50) { // Si el puntero está cerca del borde izquierdo
+                    sidenav.classList.add('sidenav-visible');
+                } else {
+                    sidenav.classList.remove('sidenav-visible');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

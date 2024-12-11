@@ -1,0 +1,10 @@
+<!-- Eliminar reserva -->
+{% extends 'base_generic.html' %}
+{% block content %}
+  <h2>Eliminar reserva para {{ reserva.viaje.destino }}</h2>
+  <p>¿Estás seguro de que deseas eliminar esta reserva?</p>
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit">Eliminar</button>
+  </form>
+{% endblock %}
